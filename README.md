@@ -1,3 +1,19 @@
+# THIS REPO IS AN EXPERIMENT, don't commit here.
+
+The following is how I made all these experiment directories, each of which contains the `spoilers.json` chopped into pieces small enough to edit using the github web interface.
+
+Note that this results in invalid JSON because the splits occur in the middle of objects.
+
+    $ cat spoilers.json |aeson-pretty > spoilers2.json && mv spoilers2.json spoilers.json
+    $ for i in `seq 2 10`; do mkdir split-experiment.$i; cd split-experiment.$i; split -e --verbose \
+      --additional-suffix=.json -n $i ../spoilers.json spoilers.; cd ..; done
+
+## Results
+
+Split four ways is still too big.  Split five ways works, but editor performance is poor because the file is so big.  I say you go for split 10 ways.
+
+# original README follows...
+
 # Beware! Spoilers ahead!
 
 Spoilerwall introduces a brand new concept in the field of network hardening. Avoid being scanned by spoiling movies on all your ports!
